@@ -1,0 +1,7 @@
+{
+  "ProxyPort": 80,
+  "ProxyHost": "localhost",
+  "RedirectURL": "http://localhost:3000/",
+  "MonitorPort": 3001,
+  "MonitorHost": "localhost"
+}
