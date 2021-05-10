@@ -11,10 +11,9 @@ const app = express();
 app.use(bodyParser.json());
 // Configuration
 const PORT = config.ProxyPort;
-// const HOST = config.ProxyHost;
 const RedirectURL = config.RedirectURL;
 const MonitorPort = config.MonitorPort;
-// const MonitorHost = config.MonitorHost
+
 fs.writeFile(path.join(__dirname,'log.txt'), '', function (err) {
     if (err)
         console.log(err);

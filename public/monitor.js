@@ -3,12 +3,11 @@ var data
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://127.0.0.1:3001/log",
+    "url": "/log",
     "method": "GET",
     "headers": {
         "content-type": "application/json",
-        "cache-control": "no-cache",
-        "postman-token": "29c19286-cb73-ea3d-51b4-b47d7ed49849"
+        "cache-control": "no-cache"
     },
     "processData": false,
     "data": "{\"version\":\"1\"}"
