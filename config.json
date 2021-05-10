@@ -1,7 +1,11 @@
 {
   "ProxyPort": 80,
-  "ProxyHost": "localhost",
   "RedirectURL": "http://localhost:3000/",
   "MonitorPort": 3001,
-  "MonitorHost": "localhost"
+  "LineValidate": true,
+  "LineChannelSecret": "",
+  "FacebookValidate": true,
+  "FacebookToken": "",
+  "XSS-Prevention": true,
+  "SQLi-Prevention": true
 }

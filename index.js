@@ -11,10 +11,10 @@ const app = express();
 app.use(bodyParser.json());
 // Configuration
 const PORT = config.ProxyPort;
-const HOST = config.ProxyHost;
+// const HOST = config.ProxyHost;
 const RedirectURL = config.RedirectURL;
 const MonitorPort = config.MonitorPort;
-const MonitorHost = config.MonitorHost
+// const MonitorHost = config.MonitorHost
 fs.writeFile(path.join(__dirname,'log.txt'), '', function (err) {
     if (err)
         console.log(err);
@@ -22,11 +22,19 @@ fs.writeFile(path.join(__dirname,'log.txt'), '', function (err) {
         console.log('[INFO] Create log file successfully');
 });
 
+
+
 app.use('/*',function (req,res,next){
     /////logger data for monitor
     var data = {}
     data.header = req.headers
     data.body = req.body
+    data.baseUrl = req.baseUrl
+    data.method = req.method
+    data.ip = req.headers['x-forwarded-for'] || (req.connection && req.connection.remoteAddress) || ''
+
+    data.timestamp = new Date().getTime()
+
     fs.appendFile(path.join(__dirname,'log.txt'),JSON.stringify(data)+"##@@\n",function(err){
         if(err){
             console.log(err)
@@ -35,14 +43,14 @@ app.use('/*',function (req,res,next){
         }
     })
     ///////check malicious request
-    if(req.body!={}){
+    if(req.body!={}){  ////////////if request post body has value
         if(isSQLTestPass(JSON.stringify(req.body)) && isXSSTestPass(JSON.stringify(req.body))){
             next()
 
         }else{
             console.log('[WARN] Malicious Request Detected!')
         }
-    }else{
+    }else{             //////if request doesn't include POST body || is GET method
         next()
     }
 
@@ -63,9 +71,9 @@ var restream = function(proxyReq, req, res, options) {
         proxyReq.write(bodyData);
     }
 }
-var apiProxy = createProxyMiddleware('/proxy',  {
+var apiProxy = createProxyMiddleware('/',  {
     target: RedirectURL,
-    pathRewrite: { [`^/proxy`]: '',},
+    pathRewrite: { [`^/`]: '',},
     secure: false,
     changeOrigin: true,
     onProxyReq: restream
@@ -75,13 +83,17 @@ app.use(apiProxy);
 
 
 // Start Proxy
-app.listen(PORT, HOST, () => {
-    console.log(`Starting Proxy at ${HOST}:${PORT}`);
+app.listen(PORT, () => {
+    console.log(`Starting Proxy at port ${PORT}`);
 });
 
 //////Start Monitor web
 
 const app_monitor = express()
+
+app_monitor.use(express.static(path.join(__dirname, 'public')));
+
+
 app_monitor.get('/',function (req,res,next){
     res.sendFile(path.join(__dirname,'monitor.html'))
 })
@@ -90,8 +102,8 @@ app_monitor.get('/log',function (req,res,next){
     res.sendFile(path.join(__dirname,'log.txt'))
 })
 
-app_monitor.listen(MonitorPort, MonitorHost , () => {
-    console.log(`Starting Monitor at ${MonitorHost}:${MonitorPort}`);
+app_monitor.listen(MonitorPort , () => {
+    console.log(`Starting Monitor at port ${MonitorPort}`);
 });
 
 
