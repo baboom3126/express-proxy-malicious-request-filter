@@ -1,0 +1,15 @@
+{
+  "mail_notifiction": true,
+  "mail_host": "",
+  "mail_port": "",
+  "mail_user": "",
+  "mail_pwd": "",
+  "sql_1": true,
+  "sql_2": true,
+  "sql_3": false,
+  "sql_4": false,
+  "sql_5": false,
+  "xss_1": true,
+  "xss_2": true,
+  "xss_3": false
+}
