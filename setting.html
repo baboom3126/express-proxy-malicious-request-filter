@@ -98,7 +98,7 @@
                                     <input type="checkbox" id="checkbox_sql_5"/>
                                     <span>type 5 : regular expression of /exec(\s|\+)+(s|x)p\w+/ix</span>
                                 </label>
-                                <br><span>filter the word like [<font color="red"> exec sp xp white-space </font>]. For protecting stored procedure</span>
+                                <br><span>filter the word like [<font color="red"> exec sp xp white-space </font>]. For protecting stored procedure including System Stored procedure (sp) and Extended Stored Procedure(xp)</span>
                             </p>
 
                         </form>
@@ -149,7 +149,7 @@
                                     <input type="checkbox" id="checkbox_xss_3"/>
                                     <span>type 3 : regular expression of /((\%3C)|<)[^\n]+((\%3E)|>)/I</span>
                                 </label>
-                                <br><span>filter the string start from the opening angled bracket < to closing angled bracket > through the whole request string.</span>
+                                <br><span>filter the string start from the opening angled bracket < to closing angled bracket > through the whole request string and break line is included..</span>
                             </p>
 
                         </form>

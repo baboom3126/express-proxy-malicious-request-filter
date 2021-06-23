@@ -1,6 +1,6 @@
 {
   "ProxyPort": 80,
-  "RedirectURL": "http://localhost:3000/",
+  "RedirectURL": "http://127.0.0.1:3000/",
   "MonitorPort": 3001,
   "LineValidate": true,
   "LineChannelSecret": "",

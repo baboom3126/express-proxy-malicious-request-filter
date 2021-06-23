@@ -10,9 +10,9 @@ Following are the default settings
 
 {
 
-  "ProxyPort": 80,   // which port to build your proxy server 
+  "ProxyPort": 80,   // which port to build your proxy server.
     
-  "RedirectURL": "http://localhost:3000/", // the server or api to redirect
+  "RedirectURL": "http://localhost:3000/", // the server or api to redirect and protect
   
   "MonitorPort": 3001,  // the port of localhost monitor page 
   

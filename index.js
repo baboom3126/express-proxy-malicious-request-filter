@@ -189,7 +189,7 @@ var isXSSTestPass = function (str) {
     var regex2 = new RegExp(/((\%3C)|<)((\%69)|i|(\%49))((\%6D)|m|(\%4D))((\%67)|g|(\%47))[^\n]+((\%3E)|>)/, 'g')
     // filter the character like [ < i I m M g G >] and its hex equivalent. For prevent classic attack like the injecting <img src
     var regex3 = new RegExp(/((\%3C)|<)[^\n]+((\%3E)|>)/, 'g')
-    // filter the string start from the opening angled bracket < to closing angled bracket > through the whole request string.
+    // filter the string start from the opening angled bracket < to closing angled bracket > through the whole request string and break line is included.
 
     if (regex1.test(str)) {
         flag = false

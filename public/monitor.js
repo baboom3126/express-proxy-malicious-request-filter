@@ -128,7 +128,11 @@ $('#btn_export').click(function (){
     let rows = [["timestamp","ip","method","baseUrl","header","body"]];
 
     for(let i of data){
-        rows.push([new Date((JSON.parse(data[0]).timestamp)).toJSON(),JSON.stringify(JSON.parse(data[0]).ip),JSON.stringify(JSON.parse(data[0]).method),JSON.stringify(JSON.parse(data[0]).baseUrl),JSON.stringify(JSON.parse(data[0]).header).replace(/,/g,'@'),JSON.stringify(JSON.parse(data[0]).body).replace(/,/g,'@')])
+        try{
+        rows.push([new Date((JSON.parse(i).timestamp)).toJSON(),JSON.stringify(JSON.parse(i).ip),JSON.stringify(JSON.parse(i).method),JSON.stringify(JSON.parse(i).baseUrl),JSON.stringify(JSON.parse(i).header).replace(/,/g,'@'),JSON.stringify(JSON.parse(i).body).replace(/,/g,'@')])
+        }catch(err){
+
+        }
     }
 
     let csvContent = "data:text/csv;charset=utf-8,";
