@@ -1,15 +1,1 @@
-{
-  "mail_notifiction": true,
-  "mail_host": "",
-  "mail_port": "",
-  "mail_user": "",
-  "mail_pwd": "",
-  "sql_1": true,
-  "sql_2": true,
-  "sql_3": false,
-  "sql_4": false,
-  "sql_5": false,
-  "xss_1": true,
-  "xss_2": true,
-  "xss_3": false
-}
+{"mail_notifiction":true,"mail_host":"smtp.gmail.com","mail_port":"587","mail_user":"wafnotify3126@gmail.com","mail_pwd":"wafnotify","mail_to_sql":"km101km@gmail.com,baboom3126@gmail.com","mail_to_xss":"km101km@gmail.com","sql_1":true,"sql_2":true,"sql_3":true,"sql_4":true,"sql_5":false,"xss_1":false,"xss_2":false,"xss_3":false}

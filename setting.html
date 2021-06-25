@@ -192,30 +192,30 @@
                             SMTP Settings
                         </div>
                         <div class="col s12 input-field">
-                            <input id="input_host" type="text" class="validate">
+                            <input id="input_host" type="text" class="validate" placeholder="">
                             <label for="input_host">host</label>
                         </div>
                         <div class="col s12 input-field">
-                            <input id="input_port" type="text" class="validate" value="">
+                            <input id="input_port" type="text" class="validate" value="" placeholder="">
                             <label for="input_port">port (25, 465, 587 in usual)</label>
                         </div>
                         <div class="col s12 input-field">
-                            <input id="input_user" type="text" class="validate">
+                            <input id="input_user" type="text" class="validate" placeholder="">
                             <label for="input_user">auth username</label>
                         </div>
                         <div class="col s12 input-field">
-                            <input id="input_pwd" type="password" class="validate">
+                            <input id="input_pwd" type="password" class="validate" placeholder="">
                             <label for="input_pwd">auth password</label>
                         </div>
                         <div class="col s12">
                             Receivers
                         </div>
                         <div class="col s12 input-field">
-                            <input id="input_sql_receivers" type="password" class="validate" placeholder="EMail Address of Receivers. Use ; to split">
+                            <input id="input_sql_receivers" type="text" class="validate" placeholder="EMail Address of Receivers. Use ; to split">
                             <label for="input_sql_receivers">SQL injection notify</label>
                         </div>
                         <div class="col s12 input-field">
-                            <input id="input_xss_receivers" type="password" class="validate" placeholder="EMail Address of Receivers. Use ; to split">
+                            <input id="input_xss_receivers" type="text" class="validate" placeholder="EMail Address of Receivers. Use ; to split">
                             <label for="input_xss_receivers">XSS attack notify</label>
                         </div>
                         <div class="col s12">
@@ -253,6 +253,14 @@
     };
 
     $.ajax(settings).done(function (data) {
+
+        $('#input_host').val(data.mail_host)
+        $('#input_port').val(data.mail_port)
+        $('#input_user').val(data.mail_user)
+        $('#input_pwd').val(data.mail_pwd)
+        $('#input_sql_receivers').val(data.mail_to_sql)
+        $('#input_xss_receivers').val(data.mail_to_xss)
+
 
         if(data.mail_notifiction===true){
             $('#checkbox_mail').prop('checked',true)
@@ -367,6 +375,37 @@
     });
 
     $('#btn_mail_save').click(function (){
+
+        let mail_host = $("#input_host").val()
+        let mail_port = $("#input_port").val()
+        let mail_user = $("#input_user").val()
+        let mail_pwd = $("#input_pwd").val()
+        let mail_to_sql = $("#input_sql_receivers").val()
+        let mail_to_xss = $("#input_xss_receivers").val()
+        let postData = {}
+        postData.mail_host = mail_host
+        postData.mail_port = mail_port
+        postData.mail_user = mail_user
+        postData.mail_pwd = mail_pwd
+        postData.mail_to_sql = mail_to_sql
+        postData.mail_to_xss = mail_to_xss
+
+        var settings = {
+            "url": "./setMail",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data":JSON.stringify(postData)
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+
+
+
         alert('your changes has been saved.')
     })
 
