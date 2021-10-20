@@ -172,15 +172,18 @@
                         <div class="col s9">
 
                             <span class="card-title" style="display: inline-block;">Firewall Settings</span>
+                            <span id="retry_time_notify" style="color:green;display: none;" >&nbsp;your changes has been saved</span>
 
                         </div>
 
                         <div class="col s12 input-field">
                             <span style="color:#9e9e9e;">Prevent D-Dos & Brute Force Decrypt.</span><br>
-                            <span style="color:#9e9e9e;">If the same ip send { <font color="red" id="retry_time_font">10</font> } times malicious request add it into black list.</span>
+                            <span style="color:#9e9e9e;">If the same ip send { <font color="red" id="retry_time_font">10</font> } times malicious request then add it into black list.</span>
                             <input id="retry_times" type="number" class="validate" placeholder="" value="10" style="color: red;">
-                            <span id="retry_time_notify" style="color:green;display: none;" >&nbsp;your changes has been saved</span>
                             <button class="btn waves-effect waves-light" id="show_black_list">Check Black List</button>
+
+
+
                         </div>
 
                     </div>
